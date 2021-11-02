@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>National Paper Bags Factory</title>
+    {% assets "bootstrap.css" %} <link rel="stylesheet" href="{{ ASSET_URL }}">{% endassets %}
+    {% assets "theme.css" %} <link rel="stylesheet" href="{{ ASSET_URL }}">{% endassets %}
+<!-- 
+
+  <link rel="stylesheet" href="../assets/css/bootstrap.css">
+
+  <link rel="stylesheet" href="../assets/css/theme.css"> -->
+
+</head>
+<body>
+  
+  <div class="page-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card-service">
+            <div class="header">
+              <img src="static/img/services/search.png" alt="search" width="50%">
+            </div>
+            <div class="body">
+              <h5 class="text-secondary">Search</h5>
+              <p>Search in previously added products.</p>
+              <a href="service.html" class="btn btn-primary">Search</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card-service">
+            <div class="header">
+              <img src="static/img/services/add.png" alt="add" width="50%">
+            </div>
+            <div class="body">
+              <h5 class="text-secondary">Add</h5>
+              <p>Add new product pricing.</p>
+              <a href="/add" class="btn btn-primary">Add</a>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div> <!-- .container -->
+  </div> <!-- .page-section -->
+  
+</body>
+</html>

@@ -1,0 +1,447 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        تسعيرة جديدة
+    </title>
+    <style>
+
+        /* Styling the Body element i.e. Color,
+        Font, Alignment */
+        body {
+            background-color: #F1B991;
+            font-family: Verdana;
+            text-align: center;
+        }
+
+        /* Styling the Form (Color, Padding, Shadow) */
+        form {
+            background-color: #fff;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px 20px;
+            box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Styling form-control Class */
+        .form-control {
+            text-align: right;
+            margin-bottom: 25px;
+            direction: rtl;
+        }
+
+            /* Styling form-control Label */
+            .form-control label {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            /* Styling form-control input,
+        select, textarea */
+            .form-control input,
+            .form-control select,
+            .form-control textarea {
+                border: 1px solid #777;
+                border-radius: 2px;
+                font-family: inherit;
+                padding: 10px;
+                display: block;
+                width: 95%;
+            }
+
+                /* Styling form-control Radio
+        button and Checkbox */
+                .form-control input[type="radio"],
+                .form-control input[type="checkbox"] {
+                    display: inline-block;
+                    width: auto;
+                }
+
+        /* Styling Button */
+        button {
+            background-color: dimgrey;
+            border: 1px solid #777;
+            border-radius: 2px;
+            font-family: inherit;
+            font-size: 21px;
+            display: block;
+            width: 100%;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    
+
+    <!-- Create Form -->
+    <form id="form">
+
+
+        <!-- Details -->
+
+        <div class="form-control">
+            <label for="date">
+                التاريخ
+            </label>
+            <!-- Input Type Date -->
+            <input type="date" id="date">
+
+        </div>
+
+        <div class="form-control">
+            <label for="name" id="label-name">
+                اسم العميل
+            </label>
+
+            <!-- Input Type Text -->
+            <input type="text"
+                   id="name"
+                   placeholder="ادخل اسم العميل" />
+        </div>
+
+        <div class="form-control">
+            <label for="prodname" id="label-prodname">
+                اسم المنتج
+            </label>
+
+            <!-- Input Type Text -->
+            <input type="text"
+                   id="prodname"
+                   placeholder="ادخل اسم المنتج" />
+        </div>
+
+        <div class="form-control">
+            <label for="quantity" id="label-quantity">
+                الكمية
+            </label>
+
+            <!-- Input Type Text -->
+            <input type="text"
+                   id="quantity"
+                   placeholder="Enter your age" />
+        </div>
+
+        <div class="form-control">
+            <label>
+                نوع المنتج
+            </label>
+
+            <!-- Input Type Radio Button -->
+            <label for="option-1">
+                <input type="radio"
+                       id="option-1"
+                       name="option">كيس ورق</input>
+            </label>
+            <label for="option-2">
+                <input type="radio"
+                       id="option-2"
+                       name="option">كيس كرتون</input>
+            </label>
+            <label for="option-3">
+                <input type="radio"
+                       id="option-3"
+                       name="option">علبة كرتون عادي</input>
+            </label>
+            <label for="option-4">
+                <input type="radio"
+                       id="option-4"
+                       name="option">علبة فنية</input>
+            </label>
+        </div>
+
+        <p class="form-control label">
+            <br><br>
+            المواصفات:
+            <br><br>
+        </p>
+
+
+
+        <div class="form-control">
+            <label for="ptype" id="label-ptype">
+                نوع الكرتون
+            </label>
+
+            <!-- Dropdown options -->
+            <select name="ptype" id="ptype">
+             {% for item in types %}
+                <option value="{{item['id']}}">{{item['name']}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-control">
+            <label for="print" id="label-print">
+                الطباعة
+            </label>
+
+            <!-- Dropdown options -->
+            <select name="print" id="print">
+                <option value="1">نوع 1</option>
+                <option value="2">نوع 2</option>
+                <option value="3">نوع 3</option>
+                <option value="4">نوع 4</option>
+            </select>
+        </div>
+
+        <div class="form-control">
+            <label>
+                سلفان
+            </label>
+
+            <!-- Input Type Radio Button -->
+            <label for="solovan-s">
+                <input type="radio"
+                       id="solovan-s"
+                       name="option">لامع</input>
+            </label>
+            <label for="solovan-m">
+                <input type="radio"
+                       id="solovan-m"
+                       name="option">مت</input>
+            </label>
+
+        </div>
+
+        <div class="form-control">
+            <label>
+                حراري
+            </label>
+
+            <!-- Input Type Radio Button -->
+            <label for="harari-g">
+                <input type="radio"
+                       id="harari-g"
+                       name="option" onclick="removeRequired();">ذهبي</input>
+            </label>
+            <label for="harari-s">
+                <input type="radio"
+                       id="harari-s"
+                       name="option" onclick="removeRequired();">فضي</input>
+            </label>
+
+            <label for="harari-o">
+                <input type="radio"
+                       id="harari-o"
+                       name="option" onclick="setRequired();">خاص (اذكر):</input>
+            </label>
+            <input id="inputother" type="text" name="othertext" onchange="changeradioother()">
+
+        </div>
+
+        <div class="form-control">
+            <label>
+                خلع وتبطين
+            </label>
+
+            <!-- Input Type Radio Button -->
+            <label for="khal-tab-y">
+                <input type="radio"
+                       id="khal-tab-y"
+                       name="option">نعم</input>
+            </label>
+            <label for="khal-tab-n">
+                <input type="radio"
+                       id="khal-tab-n"
+                       name="option">لا</input>
+            </label>
+
+        </div>
+
+        <div class="form-control">
+            <label>
+                تبطين
+            </label>
+
+            <!-- Input Type Radio Button -->
+            <label for="tab-y">
+                <input type="radio"
+                       id="tab-y"
+                       name="option">نعم</input>
+            </label>
+            <label for="tab-n">
+                <input type="radio"
+                       id="tab-n"
+                       name="option">لا</input>
+            </label>
+
+        </div>
+
+        <div class="form-control">
+            <label>
+                قص
+            </label>
+
+            <!-- Input Type Radio Button -->
+            <label for="cut-a">
+                <input type="radio"
+                       id="cut-a"
+                       name="option">قالب</input>
+            </label>
+            <label for="cut-b">
+                <input type="radio"
+                       id="cut-b"
+                       name="option">ايش هاي</input>
+            </label>
+
+        </div>
+
+        <div class="form-control">
+            <label>
+                توقيف علبة
+            </label>
+
+            <!-- Input Type Radio Button -->
+            <label for="taw-1">
+                <input type="radio"
+                       id="taw-1"
+                       name="option">قطعة</input>
+            </label>
+            <label for="taw-2">
+                <input type="radio"
+                       id="taw-2"
+                       name="option">قطعتين</input>
+            </label>
+            <label for="taw-3">
+                <input type="radio"
+                       id="taw-3"
+                       name="option">3 قطع</input>
+            </label>
+
+        </div>
+
+        <div class="form-control">
+            <label>
+                لف زنار
+            </label>
+
+            <!-- Input Type Radio Button -->
+            <label for="laf-y">
+                <input type="radio"
+                       id="laf-y"
+                       name="option">نعم</input>
+            </label>
+            <label for="laf-n">
+                <input type="radio"
+                       id="laf-n"
+                       name="option">لا</input>
+            </label>
+
+        </div>
+
+        <div class="form-control">
+            <label for="8awate3" id="label-8awate3">
+                عدد القواطع
+            </label>
+            <input type="number"
+                   id="8awate3"
+                   placeholder="ادخل العدد" />
+        </div>
+
+        <div class="form-control">
+            <label>
+                تشطيب نهائي
+            </label>
+
+            <!-- Input Type Radio Button -->
+            <label for="tash-y">
+                <input type="radio"
+                       id="tash-y"
+                       name="option">نعم</input>
+            </label>
+            <label for="tash-n">
+                <input type="radio"
+                       id="tash-n"
+                       name="option">لا</input>
+            </label>
+
+        </div>
+
+        <div class="form-control">
+            <label>
+                أجور أخرى
+            </label>
+            <label for="inp-1">
+                <input type="checkbox"
+                       name="inp">تت1</input>
+            </label>
+            <label for="inp-2">
+                <input type="checkbox"
+                       name="inp">نن2input>
+            </label>
+            <label for="inp-3">
+                <input type="checkbox"
+                       name="inp">هع3</input>
+            </label>
+        </div>
+
+        <div class="form-control">
+            <label for="7abel-w" id="label-7abel-w">
+                حبل
+            </label>
+            <select name="7abel-w" id="7abel-w">
+                <option value="1">بدون</option>
+                <option value="2">مجدول عادي</option>
+                <option value="3">مجدول ملون</option>
+            </select>
+        </div>
+
+        <div class="form-control">
+            <label for="7abel-c" id="label-7abel-c">
+                حبل
+            </label>
+            <select name="7abel-c" id="7abel-c">
+                <option value="1">عادي</option>
+                <option value="2">  عادي</option>
+                <option value="3">مجدول ملون</option>
+                <option value="4">شبر عادي</option>
+                <option value="5">شبر مطبوع</option>
+            </select>
+        </div>
+
+
+
+        <div class="form-control">
+            <label for="comment">
+                Any comments or suggestions
+            </label>
+
+            <!-- multi-line text input control -->
+            <textarea name="comment" id="comment"
+                      placeholder="Enter your comment here">
+			</textarea>
+        </div>
+
+        <!-- Multi-line Text Input Control -->
+        <button type="submit" value="submit">
+            Submit
+        </button>
+    </form>
+
+
+    <script>
+        function changeradioother() {
+            var other = document.getElementById("other");
+            other.value = document.getElementById("inputother").value;
+        }
+        function setRequired() {
+            document.getElementById("inputother").required = true;
+        }
+
+        function removeRequired() {
+            if (document.getElementById("inputother").required == true) {
+                document.getElementById("inputother").required = false;
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
